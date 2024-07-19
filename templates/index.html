@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <title>Погода</title>
+    <style>
+      body { font-family: Arial, sans-serif; }
+      .weather-container { max-width: 600px; margin: auto; padding: 20px; text-align: center; }
+    </style>
+  </head>
+  <body>
+    <div class="weather-container">
+      <h1>Прогноз погоды</h1>
+      <form method="post">
+        <input type="text" name="city" placeholder="Введите город" required>
+        <button type="submit">Узнать погоду!</button>
+      </form>
+      {% if weather_data or error %}
+        {% if error %}
+          <p>{{ error['Ошибка'] }}</p>
+        {% else %}
+          <h2>{{ weather_data.city }}</h2>
+          <p>Сейчас температура: {{ weather_data.temperature_2m }} &deg;C</p>
+          <p>Ощущается как: {{ weather_data.apparent_temperature }} &deg;C</p>
+          <p>Вероятность осадков: {{ weather_data.precipitation_probability }} %</p>
+          <p>Скорость ветра: {{ weather_data.wind_speed_10m }} km/h</p>
+          <table style="width: 600px;font-size: 14px;">
+            <tr>
+              <th>Когда</th>
+              <th>Температура</th>
+              <th>Скорость ветра</th>
+              <th>Облачность</th>
+              <th>Вероятность осадков</th>
+            </tr>
+            {% for forecast in weather_data_2 %}
+              <tr>
+                <th>{{ forecast.index }}</th>
+                <th>{{ forecast.temperature_2m }} &deg;C</th>
+                <th>{{ forecast.wind_speed_10m }} km/h</th>
+                <th>{{ forecast.cloud_cover }} %</th>
+                <th>{{ forecast.precipitation_probability }} %</th>
+              </tr>
+            {% endfor %}
+          </table>
+        {% endif %}
+      {% endif %}
+    </div>
+  </body>
+</html>
