@@ -1,7 +1,7 @@
 # Веб-приложение на Flask, которое предоставляет прогноз погоды для введенного пользователем города, используя API Open-Meteo и OpenStreetMap для получения координат города.
 ## Установка
 1. Клонируйте репозиторий:
-bash
+bash\n
    git clone https://github.com/oleg2046/test_o_complex.git
    cd test_o_complex
    
